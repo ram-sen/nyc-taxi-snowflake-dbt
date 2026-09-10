@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: stg_yellow_tripdata
+    description: "Staging model for NYC Yellow Taxi trip data. One row per trip, with fields cast to proper types from the raw JSON source."
+    columns:
+      - name: vendor_id
+        description: "ID of the taxi vendor/provider that supplied the trip record."
+        tests:
+          - not_null
+
+      - name: pickup_at
+        description: "Timestamp when the trip meter was engaged."
+        tests:
+          - not_null
+
+      - name: dropoff_at
+        description: "Timestamp when the trip meter was disengaged."
+        tests:
+          - not_null
+
+      - name: trip_distance
+        description: "Trip distance in miles, as reported by the taxi meter."
+
+      - name: pickup_location_id
+        description: "TLC Taxi Zone ID where the trip started."
+
+      - name: dropoff_location_id
+        description: "TLC Taxi Zone ID where the trip ended."
+
+      - name: fare_amount
+        description: "Base fare amount calculated by the meter, in USD."
+
+      - name: total_amount
+        description: "Total amount charged to passengers, excluding cash tips, in USD."

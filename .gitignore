@@ -1,0 +1,8 @@
+venv/
+.env
+*.pyc
+__pycache__/
+target/
+dbt_packages/
+logs/
+data/raw/*.parquet

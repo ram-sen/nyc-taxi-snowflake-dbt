@@ -34,3 +34,7 @@ jobs:
       - name: Run dbt build
         working-directory: nyc_taxi
         run: dbt build
+
+      - name: Run dbt build
+        working-directory: nyc_taxi
+        run: dbt build --profiles-dir .

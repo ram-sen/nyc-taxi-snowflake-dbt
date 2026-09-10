@@ -1,15 +1,5 @@
-Welcome to your new dbt project!
+# NYC Taxi Data Pipeline — Snowflake + dbt
 
-### Using the starter project
+End-to-end ELT pipeline that ingests NYC Yellow Taxi trip data into Snowflake and transforms it into an analytics-ready star schema using dbt.
 
-Try running the following commands:
-- dbt run
-- dbt test
-
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+## Architecture

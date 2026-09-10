@@ -4,9 +4,6 @@ End-to-end ELT pipeline that ingests NYC Yellow Taxi trip data into Snowflake an
 
 ## Architecture
 
-NYC TLC (public data) → Snowflake (raw ingestion) → dbt (transformation) → Star schema (marts)
-
-
 **Layers:**
 - **RAW** — raw trip data loaded as-is (VARIANT/JSON) via internal stage (`PUT` + `COPY INTO`), preserving the source schema exactly as delivered.
 - **ANALYTICS_STAGING** — typed, cleaned views. Raw JSON fields are cast to proper types (timestamps, floats, integers) and renamed to snake_case.
@@ -27,7 +24,6 @@ NYC TLC (public data) → Snowflake (raw ingestion) → dbt (transformation) →
 - **Staging = views, Marts = tables.** Staging models are cheap, always-fresh passthroughs. Marts are materialized as physical tables since they're the layer queried directly by BI tools.
 
 ## Project Structure
-
 nyc_taxi/
 ├── models/
 │ ├── staging/ # typed, renamed views

@@ -58,4 +58,7 @@ nyc_taxi/
 
 ## Status
 
-🚧 Actively evolving — next additions: CI/CD (GitHub Actions), incremental materialization, and expanded data quality tests.
+🚧 Actively evolving — next additions: CI/CD (GitHub Actions), incremental materialization, and expanded data quality tests
+
+
+- **A small number of trips (43 out of ~5.97M, ~0.0007%) have implausible trip durations** (34 hours to 6.5 days), while fare and distance remain normal — consistent with the TLC's documented "store and forward" mechanism, where a trip's dropoff signal is only transmitted once the vehicle reconnects to the server, sometimes after a significant delay. Flagged via a `severity: warn` singular test rather than blocking the pipeline, since fare/distance integrity is unaffected.

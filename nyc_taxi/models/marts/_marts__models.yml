@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: dim_locations
+    description: "Dimension table with NYC Taxi Zone reference data."
+    columns:
+      - name: location_id
+        description: "Unique identifier for a taxi zone."
+        tests:
+          - unique
+          - not_null
+
+      - name: borough
+        description: "NYC borough the zone belongs to."
+        tests:
+          - accepted_values:
+              values: ['Manhattan', 'Brooklyn', 'Queens', 'Bronx', 'Staten Island', 'EWR', 'Unknown']
+
+  - name: fct_trips
+    description: "Fact table with one row per taxi trip, incrementally loaded."
+    columns:
+      - name: trip_id
+        description: "Surrogate key generated from trip attributes. See README for known collision limitation."
+        tests:
+          - not_null
+
+      - name: vendor_id
+        description: "ID of the taxi vendor/provider."
+        tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 6, 7]
+
+      - name: pickup_location_id
+        description: "FK to dim_locations — zone where the trip started."
+        tests:
+          - relationships:
+              to: ref('dim_locations')
+              field: location_id
+
+      - name: dropoff_location_id
+        description: "FK to dim_locations — zone where the trip ended."
+        tests:
+          - relationships:
+              to: ref('dim_locations')
+              field: location_id
